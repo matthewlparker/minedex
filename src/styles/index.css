@@ -1,0 +1,21 @@
+@import url('_reset.css');
+
+@font-face {
+  font-family: 'univia-pro';
+  src: url('./fonts/UniviaPro-Light.woff2') format('woff2');
+}
+
+html,
+body,
+#root {
+  position: relative;
+  height: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'univia-pro', 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Lato',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

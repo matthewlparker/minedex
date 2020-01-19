@@ -1,9 +1,15 @@
 @import url('_reset.css');
+@import url('https://fonts.googleapis.com/css?family=Electrolize&display=swap');
 
-@font-face {
+/* @font-face {
   font-family: 'univia-pro';
   src: url('./fonts/UniviaPro-Light.woff2') format('woff2');
-}
+} */
+
+/* @font-face {
+  font-family: 'Electrolize';
+  src: url('https://fonts.googleapis.com/css?family=Electrolize&display=swap') format('ttf');
+} */
 
 html,
 body,
@@ -13,7 +19,7 @@ body,
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'univia-pro', 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: -apple-system, BlinkMacSystemFont, 'univia-pro', 'Electrolize', 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Lato',
     sans-serif;
   -webkit-font-smoothing: antialiased;

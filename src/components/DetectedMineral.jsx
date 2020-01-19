@@ -1,15 +1,21 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import { NumberFormatStyled } from './common/StyledComponents.js';
 
-const PercentageInput = styled.input`
-  background: white;
-`;
-
-export default function DetectedMineral({mineral, handleChange}) {
+export default function DetectedMineral({ mineral, handleChange }) {
+  const handleFocus = e => e.target.select();
   return (
     <div>
-      <div style={{ color: 'white'}}>{mineral.name}</div>
-      <PercentageInput min={0} max={0} value={mineral.percentage} onChange={e => handleChange(mineral.name, e.target.value)} />
+      <div style={{ color: "white" }}>{mineral.name}</div>
+      <NumberFormatStyled
+        value={mineral.percentage}
+        isAllowed={values => {
+          const { value } = values;
+          if (value.includes("-")) return false;
+          return true;
+        }}
+        onFocus={handleFocus}
+        onValueChange={values => handleChange(mineral.name, values.floatValue)}
+      />
     </div>
   );
-};
+}

@@ -4,13 +4,25 @@ import DetectedMineral from "./DetectedMineral.jsx";
 import ValueCalculation from './ValueCalculation';
 import styled from "styled-components";
 import { mineralData } from "../mineral-data/minerals.js";
+import { NumberFormatStyled } from './common/StyledComponents.js';
 
 const MineralListContainer = styled.div`
   display: grid;
   grid-auto-flow: row;
+  max-width: 720px;
+  // margin: 5px auto;
+`;
+
+const MassInput = styled.input`
+  padding: 5px 10px;
+  background: white;
+  border: 1px solid blue;
+  margin: 0 auto;
+  font-family: Electrolize;
 `;
 
 export default function MineralList() {
+  const [scan, setScan] = useState(false);
   const [minerals, setMinerals] = useState(
     Object.keys(mineralData).map(mineral => ({
       name: mineral,
@@ -29,6 +41,9 @@ export default function MineralList() {
       disabled: false
     }));
     scannedMinerals[index].detected = !scannedMinerals[index].detected;
+    if (!scannedMinerals[index].detected) {
+      scannedMinerals[index].percentage = 0;
+    }
 
     let includedMinerals = [];
     let excludedMinerals = [];
@@ -62,8 +77,9 @@ export default function MineralList() {
 
   return (
     <MineralListContainer>
-      <Scanner minerals={minerals} handleClick={handleMineralScanned} />
-      <input style={{ background: 'white' }} type="number" value={mass} onChange={e => setMass(e.target.value)} />
+      <Scanner minerals={minerals} handleClick={handleMineralScanned} scan={scan} setScan={setScan} />
+      {/* <MassInput type="number" value={mass} onChange={e => setMass(e.target.value)} /> */}
+      <NumberFormatStyled value={mass} thousandSeparator={true} suffix={' kg'}  onValueChange={values => setMass(values.floatValue)}/>
       {minerals
         .filter(mineral => mineral.detected)
         .sort((a, b) => b.value - a.value)

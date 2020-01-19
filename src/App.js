@@ -1,5 +1,6 @@
 import React from 'react';
 import MineralList from './components/MineralList.jsx';
+import { colors } from './styles/colorMachine.js';
 import './App.css';
 import styled from 'styled-components';
 import backgroundImage from './styles/images/prospector-mining-yela.png';
@@ -7,10 +8,14 @@ import backgroundImage from './styles/images/prospector-mining-yela.png';
 const Main = styled.div`
   width: 100vw;
   height: 100vh;
-  background-image: url(${backgroundImage});
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  // background-image: url(${backgroundImage});
+  // background-repeat: no-repeat;
+  // background-position: center center;
+  // background-size: cover;
+  background-color: ${colors.backgroundMain};
 `;
 
 function App() {

@@ -12,7 +12,8 @@ const DetectedMineralContainer = styled.div`
 const DetectedMineralStyled = styled(NumberFormatStyled)`
   font-size: 16px;
   margin: 0;
-  width: 40px;
+  width: 41px;
+  padding: 2.5px 5px;
 `;
 
 const Label = styled.label`
@@ -20,12 +21,12 @@ const Label = styled.label`
   font-size: 10px;
   text-align: left;
   text-transform: uppercase;
+  color: ${colors.textActive};
 `;
 
 const DetectedMineralRow = styled.div`
   display: grid;
   grid-auto-flow: column;
-
   color: ${colors.text};
 `;
 
@@ -36,7 +37,8 @@ export default function DetectedMineral({ mineral, mass, handleChange }) {
   const value = (scu * 100) * (mineral.value || 0);
   return (
     <DetectedMineralContainer>
-      <Label style={{ color: "white" }}>{mineral.name}</Label>
+      <div style={{ marginTop: '5px' }}>
+      <Label>{mineral.name}</Label>
       <DetectedMineralRow>
         <DetectedMineralStyled
           value={mineral.percentage}
@@ -49,8 +51,9 @@ export default function DetectedMineral({ mineral, mass, handleChange }) {
           onValueChange={values => handleChange(mineral.name, values.floatValue)}
         />
         <div>scu: {scu}</div>
-        <div>value: {value}</div>
+        <div>value: {value.toFixed(2)}</div>
       </DetectedMineralRow>
+      </div>
       
     </DetectedMineralContainer>
   );

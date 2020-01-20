@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import Scanner from "./Scanner.jsx";
 import DetectedMineral from "./DetectedMineral.jsx";
 import ValueCalculation from './ValueCalculation';
+import Input from './Input';
 import styled from "styled-components";
 import { mineralData } from "../mineral-data/minerals.js";
 import { NumberFormatStyled } from './common/StyledComponents.js';
+import { colors } from '../styles/colorMachine.js';
 
 const MineralListContainer = styled.div`
   display: grid;
@@ -16,33 +18,29 @@ const MineralListContainer = styled.div`
 `;
 
 const ScanResults = styled.div`
-  // display: none;
-  max-width: 300px;
-  margin: 0 auto;
+  display: grid;
+  align-items: center;
+  justify-self: center;
+  width: 320px;
+`;
+
+const Label = styled.label`
+  display: block;
+  font-size: 10px;
+  text-align: left;
+  text-transform: uppercase;
+  color: ${colors.textActive};
+  margin-top: 5px;
 `;
 
 const MassInput = styled(NumberFormatStyled)`
-  border: none;
-  background: none;
-  box-shadow: none;
-  position: relative;
-  &:after {
-    // content: '';
-    // position: absolute; left: 0; bottom: -5px;
-    // background: red;
-    // width: 100%;
-    // height: 2px;
+  width: 130px;
+  margin: 0 auto;
+  text-align: center;
+`;
 
-    position: absolute;
-        content: '';
-        height: 2px;
-        bottom: -4px; 
-        margin: 0 auto;
-		  left: 0;
-        right: 0;
-		  width: 50%;
-		  background: green;
-  }
+const MassContainer = styled.div`
+  justify-self: center;
 `;
 
 export default function MineralList() {
@@ -99,12 +97,17 @@ export default function MineralList() {
     setMinerals(updatedMinerals);
   }
 
+  const handleFocus = e => e.target.select();
+
   return (
     <MineralListContainer>
       <Scanner minerals={minerals} handleClick={handleMineralScanned} scan={scan} setScan={setScan} />
       {/* <MassInput type="number" value={mass} onChange={e => setMass(e.target.value)} /> */}
       <ScanResults>
-        <MassInput value={mass} thousandSeparator={true} suffix={' kg'}  onValueChange={values => setMass(values.floatValue)}/>
+        <MassContainer>
+          <Label>Mass</Label>
+          <MassInput value={mass} thousandSeparator={true} onValueChange={values => setMass(values.floatValue)} onFocus={handleFocus} />
+        </MassContainer>
         {minerals
           .filter(mineral => mineral.detected)
           .sort((a, b) => b.value - a.value)

@@ -1,9 +1,19 @@
 import React from 'react';
 import { NumberFormatStyled } from './common/StyledComponents.js';
 import styled from 'styled-components';
+import { colors } from '../styles/colorMachine.js';
 
 const ValueResultWrapper = styled.div`
-  height: 41px;
+  display: flex;
+  font-size: 20px;
+`;
+
+const Label = styled.label`
+  display: block;
+  font-size: 10px;
+  text-align: left;
+  text-transform: uppercase;
+  color: ${colors.textActive};
 `;
 
 export default function ValueCalculation({ minerals, mass }) {

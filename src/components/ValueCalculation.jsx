@@ -1,5 +1,10 @@
 import React from 'react';
 import { NumberFormatStyled } from './common/StyledComponents.js';
+import styled from 'styled-components';
+
+const ValueResultWrapper = styled.div`
+  height: 41px;
+`;
 
 export default function ValueCalculation({ minerals, mass }) {
   let values = [];
@@ -16,6 +21,8 @@ export default function ValueCalculation({ minerals, mass }) {
   }
   result = result.toFixed(2);
   return (
-    <NumberFormatStyled value={result} displayType={'text'} thousandSeparator={true} suffix={'  aUEC'} />
+    <ValueResultWrapper>
+      <NumberFormatStyled value={result} displayType={'text'} thousandSeparator={true} suffix={'  aUEC'} />
+    </ValueResultWrapper>
   );
 };

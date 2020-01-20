@@ -9,16 +9,30 @@ import { NumberFormatStyled } from './common/StyledComponents.js';
 const MineralListContainer = styled.div`
   display: grid;
   grid-auto-flow: row;
+  grid-template-rows: 267px auto;
   max-width: 720px;
   // margin: 5px auto;
+  margin-top: 50px;
 `;
 
-const MassInput = styled.input`
-  padding: 5px 10px;
-  background: white;
-  border: 1px solid blue;
+const ScanResults = styled.div`
+  // display: none;
+  max-width: 300px;
   margin: 0 auto;
-  font-family: Electrolize;
+`;
+
+const MassInput = styled(NumberFormatStyled)`
+  border: none;
+  background: none;
+  box-shadow: none;
+  position: relative;
+  &:after {
+    content: '';
+    position: absolute; left: 0; bottom: 0;
+    border: 2px solid red;
+    width: 100%;
+    height: 2px;
+  }
 `;
 
 export default function MineralList() {
@@ -79,14 +93,17 @@ export default function MineralList() {
     <MineralListContainer>
       <Scanner minerals={minerals} handleClick={handleMineralScanned} scan={scan} setScan={setScan} />
       {/* <MassInput type="number" value={mass} onChange={e => setMass(e.target.value)} /> */}
-      <NumberFormatStyled value={mass} thousandSeparator={true} suffix={' kg'}  onValueChange={values => setMass(values.floatValue)}/>
-      {minerals
-        .filter(mineral => mineral.detected)
-        .sort((a, b) => b.value - a.value)
-        .map((mineral, i) => (
-          <DetectedMineral key={`detected-${i}`} mineral={mineral}  handleChange={handlePercentageChanged} />
-        ))}
-      <ValueCalculation minerals={minerals.filter(mineral => mineral.detected)} mass={mass} />
+      <ScanResults>
+        <MassInput value={mass} thousandSeparator={true} suffix={' kg'}  onValueChange={values => setMass(values.floatValue)}/>
+        {minerals
+          .filter(mineral => mineral.detected)
+          .sort((a, b) => b.value - a.value)
+          .map((mineral, i) => (
+            <DetectedMineral key={`detected-${i}`} mineral={mineral} mass={mass}  handleChange={handlePercentageChanged} />
+          ))}
+        <ValueCalculation minerals={minerals.filter(mineral => mineral.detected)} mass={mass} />
+      </ScanResults>
+     
     </MineralListContainer>
   );
 }

@@ -13,7 +13,7 @@ export const colors = {
 
 export const shadows = {
   textActive: '4px 4px 10px rgba(0, 112, 202, 0.7), -4px -4px 10px rgba(0, 112, 202, 0.7), -4px 4px 10px rgba(0, 112, 202, 0.7), 4px -4px 10px rgba(0, 112, 202, 0.7)',
-  borderActive: '0 0 100px 5px rgba(0, 112, 202, 0.8), 0 0 10px 1px rgba(0, 237, 255, 0.6)',
+  borderActive: '0 0 10px 5px rgba(0, 112, 202, 0.8), 0 0 10px 1px rgba(0, 237, 255, 0.6)',
   textColorCustom: rgba => `4px 4px 10px ${rgba}, -4px -4px 10px ${rgba}, -4px 4px 10px ${rgba}, 4px -4px 10px ${rgba}`
 }
 

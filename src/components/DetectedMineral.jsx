@@ -31,9 +31,9 @@ const DetectedMineralRow = styled.div`
 
 export default function DetectedMineral({ mineral, mass, handleChange }) {
   const handleFocus = e => e.target.select();
-  const units = Math.floor((mass / 100) * (mineral.percentage * 2));
+  const units = Math.floor((mass / 100) * ((mineral.percentage || 0)* 2));
   const scu = units / 100;
-  const value = (scu * 100) * mineral.value;
+  const value = (scu * 100) * (mineral.value || 0);
   return (
     <DetectedMineralContainer>
       <Label style={{ color: "white" }}>{mineral.name}</Label>
@@ -48,7 +48,6 @@ export default function DetectedMineral({ mineral, mass, handleChange }) {
           onFocus={handleFocus}
           onValueChange={values => handleChange(mineral.name, values.floatValue)}
         />
-        <div>Units: {units}</div>
         <div>scu: {scu}</div>
         <div>value: {value}</div>
       </DetectedMineralRow>

@@ -27,11 +27,21 @@ const MassInput = styled(NumberFormatStyled)`
   box-shadow: none;
   position: relative;
   &:after {
-    content: '';
-    position: absolute; left: 0; bottom: 0;
-    border: 2px solid red;
-    width: 100%;
-    height: 2px;
+    // content: '';
+    // position: absolute; left: 0; bottom: -5px;
+    // background: red;
+    // width: 100%;
+    // height: 2px;
+
+    position: absolute;
+        content: '';
+        height: 2px;
+        bottom: -4px; 
+        margin: 0 auto;
+		  left: 0;
+        right: 0;
+		  width: 50%;
+		  background: green;
   }
 `;
 
